@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios";
+import React from "react";
+import Data from "./Data";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+/* Source consulted: 
+https://www.youtube.com/watch?v=eUr4YoJm2Sw 
+https://rapidapi.com/Gramzivi/api/covid-19-data/
+https://developer.mozilla.org/en-US/docs/Web/CSS/border
+*/
+
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { countryData: [] };
+    }
+
+componentDidMount() {
+    const options = {
+        method: 'GET',
+        url: 'https://covid-19-data.p.rapidapi.com/country',
+        params: {name: 'Singapore'},
+        headers: {
+          'x-rapidapi-host': 'covid-19-data.p.rapidapi.com',
+          'x-rapidapi-key': '966952fa82msh90ac6c8914b7a0fp1f7273jsndd130acae0c4'
+        }
+      };
+      
+      axios.request(options).then((response) => { this.setState({countryData : response.data})
+          console.log(response.data);
+      }).catch(function (error) {
+          console.error(error);
+      }
+      );
+    }
+
+    data() {
+        return this.state.countryData.map((data, i) => {
+            return <Data obj={data} key={i} />;
+        });
+    }
+
+    render(){
+        return(
+            <>
+            {this.data()}
+            <p align="center">API from https://rapidapi.com/Gramzivi/api/covid-19-data/</p>
+            
+            </>
+        )
+    }
 }
-
 export default App;
