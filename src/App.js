@@ -46,6 +46,7 @@ componentDidMount() {
             <>
             {this.data()}
             <p align="center">API from https://rapidapi.com/Gramzivi/api/covid-19-data/</p>
+            <p>Note: This API is down as of March 2022</p>
             
             </>
         )
