@@ -8,6 +8,8 @@ https://rapidapi.com/Gramzivi/api/covid-19-data/
 https://developer.mozilla.org/en-US/docs/Web/CSS/border
 */
 
+const apikey = process.env.apikey
+
 class App extends React.Component {
     constructor(props) {
         super(props);
@@ -21,7 +23,7 @@ componentDidMount() {
         params: {name: 'Singapore'},
         headers: {
           'x-rapidapi-host': 'covid-19-data.p.rapidapi.com',
-          'x-rapidapi-key': '966952fa82msh90ac6c8914b7a0fp1f7273jsndd130acae0c4'
+          'x-rapidapi-key': apikey
         }
       };
       
